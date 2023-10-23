@@ -1,0 +1,28 @@
+lass Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int n=piles.size();
+        sort(piles.begin(),piles.end());
+        int maxi=piles[n-1];
+        vector<int>v;
+        
+        int s=1,e=maxi;
+        int yk=INT_MAX;
+        while(s<=e){
+          int mid=s+(e-s)/2;
+          long long ans=0;
+          for(auto &i:piles){
+              ans+=((i+mid-1)/mid);
+          }
+          if(ans>h){
+              s=mid+1;
+               
+          }
+          else{
+                // yk=min(yk,ans);
+                e=mid-1;
+          }
+        }
+        return s;
+    }
+};
